@@ -8,20 +8,12 @@
 #define LAYER_0 0
 #define LAYER_1 1
 
-/ {
-    behaviors {
-        ht: hold_tap {
-            label = "hold_tap";
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <220>;
-            quick-tap-ms = <75>;
-            require-prior-idle-ms = <75>;
-            bindings = <&kp>, <&kp>;
-        };
-    };
+&mt {
+    flavor = "tap-preferred";
+    tapping-term-ms = <150>;
+};
 
+/ {
     keymap {
         compatible = "zmk,keymap";
         layer_0 {
