@@ -35,7 +35,7 @@
         //│  Z       │  X       │  C       │  V       │  B       │   │  N       │  M       │ , <      │ . >      │ / ?      │
             &kp Z      &kp X      &kp C      &kp V      &kp B          &kp N      &kp M     &kp COMMA   &kp DOT    &kp FSLH
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                            &kp SPACE  &kp LSHIFT     &kp LCTRL  &to LAYER_2
+                                            &kp LCTRL  &kp LSHIFT     &kp SPACE &to LAYER_2
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
