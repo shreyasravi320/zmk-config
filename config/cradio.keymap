@@ -63,15 +63,17 @@
         //│  CMD1    │  CMD2    │  CMD3    │   CMD4   │  CMD5    │   │  CMD6    │   CUT    │  COPY    │ PASTE    │  CMD9    │
            &kp LG(N1) &kp LG(N2) &kp LG(N3) &kp LG(N4) &kp LG(N5)     &kp LG(N6) &kp LC(X)  &kp LC(C)  &kp LC(V)  &kp LG(N9)
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│  MUTE    │  VD      │  VU      │   BD     │  BU      │   │  HOME    │  INS     │  DEL     │  END     │  PGUP    │
-    &kp C_MUTE &kp C_VOL_DN &kp C_VOL_UP &kp C_BRI_DN &kp C_BRI_UP   &kp HOME    &kp INS    &kp DEL    &kp END    &kp PG_UP
+        //│  BACK    │   PLAY   │   NEXT   │ CMD SPC  │ ALT TAB  │   │ CMD TAB  │ CMD ENT  │ CMD Q    │ CMD ESC  │  PGUP    │
+         &kp C_PREV  &kp C_PP  &kp C_NEXT &kp LG(SPACE) &kp LA(TAB)  &kp LG(ESC) &kp LG(ENTER) &kp LG(Q) &kp LG(TAB) &kp PG_UP
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│  BACK    │   PLAY   │   NEXT   │ ALT TAB  │ CMD SPC  │   │ CMD TAB  │ CMD ENT  │ CMD ESC  │ SCR SHT  │  PGDN    │
-           &kp C_PREV  &kp C_PP  &kp C_NEXT &kp LA(TAB) &kp LG(SPACE) &kp LG(TAB) &kp LG(ENTER) &kp LG(ESC) &kp LG(LS(S)) &kp PG_DN
+        //│   MUTE   │  VD      │  VU      │   BD     │  BU      │   │  HOME    │  INS     │  DEL     │  END     │  PGDN    │
+      &kp C_MUTE &kp C_VOL_DN &kp C_VOL_UP &kp C_BRI_DN &kp C_BRI_UP  &kp HOME    &kp INS    &kp DEL    &kp END    &kp PG_DN
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                           &to LAYER_1 &kp LSHIFT     &kp LCTRL  &to LAYER_2
+                                           &to LAYER_1 &kp LSHIFT   &kp LC(LS(R)) &to LAYER_2
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
     };
+    
+    
 };
