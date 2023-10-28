@@ -66,8 +66,8 @@
         //│  MUTE    │  VD      │  VU      │   BD     │  BU      │   │  HOME    │  INS     │  DEL     │  END     │  PGUP    │
     &kp C_MUTE &kp C_VOL_DN &kp C_VOL_UP &kp C_BRI_DN &kp C_BRI_UP   &kp HOME    &kp INS    &kp DEL    &kp END    &kp PG_UP
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│  NONE    │  BACK    │  PLAY    │   NEXT   │ ALT TAB  │   │  ` ~     │  CUT     │  COPY    │  PASTE   │  PGDN    │
-            &none     &kp C_PREV  &kp C_PP  &kp C_NEXT &kp LA(TAB)    &kp GRAVE  &kp LC(X)  &kp LC(C)  &kp LC(V)  &kp PG_DN
+        //│ CMDSPC   │  BACK    │  PLAY    │   NEXT   │ ALT TAB  │   │  ` ~     │  CUT     │  COPY    │  PASTE   │  PGDN    │
+        &kp LG(SPACE) &kp C_PREV  &kp C_PP  &kp C_NEXT &kp LA(TAB)    &kp GRAVE  &kp LC(X)  &kp LC(C)  &kp LC(V)  &kp PG_DN
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                            &to LAYER_1  &kp LCMD      &kp LCTRL  &to LAYER_2
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯

@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "*.scm": "clojure",
+        "*.nml": "clojure",
+        "*.sml": "sml",
+        "*.keymap": "c"
+    }
+}
