@@ -69,7 +69,7 @@
         //│   MUTE   │  VD      │  VU      │   BD     │  BU      │   │  HOME    │  INS     │  DEL     │  END     │  PGDN    │
       &kp C_MUTE &kp C_VOL_DN &kp C_VOL_UP &kp C_BRI_DN &kp C_BRI_UP  &kp HOME    &kp INS    &kp DEL    &kp END    &kp PG_DN
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                           &to LAYER_1 &kp LSHIFT   &kp LC(LS(R)) &to LAYER_2
+                                           &to LAYER_1 &kp LSHIFT   &kp LG(LS(R)) &to LAYER_2
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
