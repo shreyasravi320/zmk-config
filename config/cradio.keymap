@@ -72,54 +72,59 @@
 
         base_layer {
             bindings = <
-        // ╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-        // │ Q        │ W        │ E        │ R        │ T        │   │ Y        │ U        │ I        │ O        │ P        │
-            &kp Q      &kp W      &kp E      &kp R      &kp T          &kp Y      &kp U      &kp I      &kp O      &kp P
-        // │ A/gui    │ S/alt    │ D/ctrl   │ F/shift  │ G        │   │ H        │ J/shift  │ K/ctrl   │ L/alt    │ ;/gui    │
-            &hm LGUI A &hm LALT S &hm LCTRL D &hm LSHFT F &kp G        &kp H      &hm LSHFT J &hm LCTRL K &hm LALT L &hm LGUI SEMI
-        // │ Z        │ X        │ C        │ V        │ B        │   │ N        │ M        │ ,        │ .        │ /        │
-            &kp Z      &kp X      &kp C      &kp V      &kp B          &kp N      &kp M      &kp COMMA  &kp DOT    &kp FSLH
-        //                                  │ ESC/WM   │ SPACE/NAV│   │ ENTER/SYM│ BSPC     │
-                                            &lth WM ESC &lth NAV SPACE  &lth NUMSYM ENTER &kp BSPC
+        // ╭────────┬────────┬────────┬────────┬────────╮   ╭────────┬────────┬────────┬────────┬────────╮
+        // │ Q      │ W      │ E      │ R      │ T      │   │ Y      │ U      │ I      │ O      │ P      │
+            &kp Q    &kp W    &kp E    &kp R    &kp T        &kp Y    &kp U    &kp I    &kp O    &kp P
+        // │ A/gui  │ S/alt  │ D/ctrl │ F/shift│ G      │   │ H      │ J/shift│ K/ctrl │ L/alt  │ ;/gui  │
+            &hm LGUI A &hm LALT S &hm LCTRL D &hm LSHIFT F &kp G      &kp H &hm LSHIFT J &hm LCTRL K &hm LALT L &hm LGUI SEMI
+        // │ Z      │ X      │ C      │ V      │ B      │   │ N      │ M      │ ,      │ .      │ /      │
+            &kp Z    &kp X    &kp C    &kp V    &kp B        &kp N    &kp M    &kp COMMA &kp DOT &kp FSLH
+        //                            │ ESC/WM │ SPC/NAV│   │ ENT/SYM│ BSPC   │
+                                      &lth WM ESC &lth NAV SPACE      &lth NUMSYM ENTER &kp BSPC
             >;
         };
 
         nav_layer {
             bindings = <
-        // │ TAB      │          │          │          │          │   │ HOME     │ PGDN     │ PGUP     │ END      │ BSPC     │
-            &kp TAB    &trans     &trans     &trans     &trans         &kp HOME   &kp PG_DN  &kp PG_UP  &kp END    &kp BSPC
-        // │ ESC      │          │          │          │          │   │ LEFT     │ DOWN     │ UP       │ RIGHT    │ ENTER    │
-            &kp ESC    &trans     &trans     &trans     &trans         &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT  &kp ENTER
-        // │          │          │          │          │          │   │          │          │          │          │          │
-            &trans     &trans     &trans     &trans     &trans         &trans     &trans     &trans     &trans     &trans
-                                            &trans     &trans          &trans     &trans
+        // ╭────────┬────────┬────────┬────────┬────────╮   ╭────────┬────────┬────────┬────────┬────────╮
+        // │ TAB    │        │        │        │        │   │ HOME   │ PGDN   │ PGUP   │ END    │ BSPC   │
+            &kp TAB  &trans   &trans   &trans   &trans       &kp HOME &kp PG_DN &kp PG_UP &kp END &kp BSPC
+        // │ ESC    │        │        │        │        │   │ LEFT   │ DOWN   │ UP     │ RIGHT  │ ENTER  │
+            &kp ESC  &trans   &trans   &trans   &trans       &kp LEFT &kp DOWN &kp UP   &kp RIGHT &kp ENTER
+        // │        │        │        │        │        │   │ WORD←  │ WORD→  │ LINE←  │ LINE→  │ DEL    │
+            &trans   &trans   &trans   &trans   &trans       &kp LA(LEFT) &kp LA(RIGHT) &kp LG(LEFT) &kp LG(RIGHT) &kp DEL
+                                      &trans   &trans         &trans   &trans
             >;
         };
 
         numsym_layer {
             bindings = <
         // Numbers curve across both halves.
-        // │ TAB      │ 2        │ 3        │ 4        │ 5        │   │ 6        │ 7        │ 8        │ 9        │ BSPC     │
-            &kp TAB    &kp N2     &kp N3     &kp N4     &kp N5         &kp N6     &kp N7     &kp N8     &kp N9     &kp BSPC
-        // │ ESC      │ 1        │ {        │ }        │ - _      │   │ \ |      │ (        │ )        │ 0        │ ENTER    │
-            &kp ESC    &kp N1     &kp LBRC   &kp RBRC   &kp MINUS      &kp BSLH   &kp LPAR   &kp RPAR   &kp N0     &kp ENTER
-        // │ ALT-TAB  │ [        │ <        │ >        │ ' "      │   │ ` ~      │ = +      │ ,        │ .        │ / ?      │
-            &kp LA(TAB) &kp LBKT  &kp LS(COMMA) &kp LS(DOT) &kp APOS   &kp GRAVE  &kp EQUAL  &kp COMMA  &kp DOT    &kp FSLH
-                                            &trans     &trans          &trans     &trans
+        //
+        // ╭────────┬────────┬────────┬────────┬────────╮   ╭────────┬────────┬────────┬────────┬────────╮
+        // │ TAB    │ 2      │ 3      │ 4      │ 5      │   │ 6      │ 7      │ 8      │ 9      │ BSPC   │
+            &kp TAB  &kp N2   &kp N3   &kp N4   &kp N5       &kp N6   &kp N7   &kp N8   &kp N9   &kp BSPC
+        // │ ESC    │ 1      │ (      │ )      │ -      │   │ =      │ [      │ ]      │ 0      │ ENTER  │
+            &kp ESC  &kp N1   &kp LPAR &kp RPAR &kp MINUS    &kp EQUAL &kp LBKT &kp RBKT &kp N0  &kp ENTER
+        // │ `      │ ~      │ {      │ }      │ _      │   │ +      │ \      │ |      │ '      │ "      │
+            &kp GRAVE &kp LS(GRAVE) &kp LBRC &kp RBRC &kp LS(MINUS)  &kp LS(EQUAL) &kp BSLH &kp LS(BSLH) &kp APOS &kp LS(APOS)
+                                      &trans   &trans         &trans   &trans
             >;
         };
 
         wm_layer {
             bindings = <
-        // WM layer emits F13-F24 for skhd/yabai.
+        // F13-F24 are intentionally meaningless to macOS.
+        // skhd will turn them into yabai commands.
         //
-        // │ Space 1  │ Space 2  │ Space 3  │ Reload   │ Float    │   │          │          │          │ Space 4  │ Space 5  │
-            &kp F13    &kp F14    &kp F15    &kp F18    &kp F19        &trans     &trans     &trans     &kp F16    &kp F17
-        // │          │ Focus L  │          │ Focus R  │ Fullscrn │   │ Focus L  │ Focus D  │ Focus U  │ Focus R  │ Terminal │
-            &trans     &kp F20    &trans     &kp F21    &kp F22        &kp F20    &kp F23    &kp F24    &kp F21    &kp LS(F18)
-        // │ Close    │ Swap L   │          │ Swap R   │ Balance  │   │ Swap L   │ Swap D   │ Swap U   │ Swap R   │ Close    │
-            &kp LS(F19) &kp LS(F20) &trans   &kp LS(F21) &kp LS(F22)   &kp LS(F20) &kp LS(F23) &kp LS(F24) &kp LS(F21) &kp LS(F19)
-                                            &trans     &trans          &trans     &trans
+        // ╭────────┬────────┬────────┬────────┬────────╮   ╭────────┬────────┬────────┬────────┬────────╮
+        // │ Space1 │ Space2 │ Space3 │ Space4 │ Space5 │   │ Reload │ Restart│ Float  │ Full   │ Term   │
+            &kp F13  &kp F14  &kp F15  &kp F16  &kp F17      &kp F18  &kp F19  &kp F20  &kp F21  &kp F22
+        // │        │ Focus← │ Focus↓ │ Focus↑ │ Focus→ │   │ Swap←  │ Swap↓  │ Swap↑  │ Swap→  │ Close  │
+            &trans   &kp F23  &kp F24  &kp LS(F13) &kp LS(F14)   &kp LS(F15) &kp LS(F16) &kp LS(F17) &kp LS(F18) &kp LS(F19)
+        // │        │ Send S1│ Send S2│ Send S3│ Send S4│   │ Send S5│ Balance│ Mirror │ Rotate │ Stack  │
+            &trans   &kp LS(F20) &kp LS(F21) &kp LS(F22) &kp LS(F23) &kp LS(F24) &kp LC(F13) &kp LC(F14) &kp LC(F15) &kp LC(F16)
+                                      &trans   &trans         &trans   &trans
             >;
         };
     };
