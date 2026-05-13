@@ -10,28 +10,26 @@
 #define NUMSYM 2
 #define WM     3
 
-#define HYPER (MOD_LCTL | MOD_LALT | MOD_LSFT | MOD_LGUI)
-
 / {
     behaviors {
         hm: homerow_mods {
             compatible = "zmk,behavior-hold-tap";
             label = "HOMEROW_MODS";
             #binding-cells = <2>;
-            tapping-term-ms = <200>;
+            tapping-term-ms = <180>;
             quick-tap-ms = <0>;
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
         };
 
-        th: thumb_hold_tap {
+        lth: layer_tap_hold {
             compatible = "zmk,behavior-hold-tap";
-            label = "THUMB_HOLD_TAP";
+            label = "LAYER_TAP_HOLD";
             #binding-cells = <2>;
-            tapping-term-ms = <220>;
-            quick-tap-ms = <150>;
+            tapping-term-ms = <180>;
+            quick-tap-ms = <120>;
             flavor = "balanced";
-            bindings = <&kp>, <&kp>;
+            bindings = <&mo>, <&kp>;
         };
     };
 
@@ -39,31 +37,31 @@
         compatible = "zmk,combos";
 
         combo_esc {
-            timeout-ms = <35>;
+            timeout-ms = <30>;
             key-positions = <16 17>; // J K
             bindings = <&kp ESC>;
         };
 
         combo_tab {
-            timeout-ms = <35>;
+            timeout-ms = <30>;
             key-positions = <12 13>; // D F
             bindings = <&kp TAB>;
         };
 
         combo_enter {
-            timeout-ms = <35>;
+            timeout-ms = <30>;
             key-positions = <22 23>; // C V
             bindings = <&kp ENTER>;
         };
 
         combo_bspc {
-            timeout-ms = <35>;
+            timeout-ms = <30>;
             key-positions = <6 7>; // U I
             bindings = <&kp BSPC>;
         };
 
         combo_del {
-            timeout-ms = <35>;
+            timeout-ms = <30>;
             key-positions = <25 26>; // N M
             bindings = <&kp DEL>;
         };
@@ -77,21 +75,17 @@
         // ╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
         // │ Q        │ W        │ E        │ R        │ T        │   │ Y        │ U        │ I        │ O        │ P        │
             &kp Q      &kp W      &kp E      &kp R      &kp T          &kp Y      &kp U      &kp I      &kp O      &kp P
-        // ├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         // │ A/gui    │ S/alt    │ D/ctrl   │ F/shift  │ G        │   │ H        │ J/shift  │ K/ctrl   │ L/alt    │ ;/gui    │
             &hm LGUI A &hm LALT S &hm LCTRL D &hm LSHFT F &kp G        &kp H      &hm LSHFT J &hm LCTRL K &hm LALT L &hm LGUI SEMI
-        // ├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         // │ Z        │ X        │ C        │ V        │ B        │   │ N        │ M        │ ,        │ .        │ /        │
             &kp Z      &kp X      &kp C      &kp V      &kp B          &kp N      &kp M      &kp COMMA  &kp DOT    &kp FSLH
-        // ╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                            &th HYPER ESC &lt NAV SPACE  &lt NUMSYM ENTER &lt WM BSPC
-        //                                  ╰─────────────┴────────────╯   ╰───────────────┴──────────╯
+        //                                  │ ESC/WM   │ SPACE/NAV│   │ ENTER/SYM│ BSPC     │
+                                            &lth WM ESC &lth NAV SPACE  &lth NUMSYM ENTER &kp BSPC
             >;
         };
 
         nav_layer {
             bindings = <
-        // ╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
         // │ TAB      │          │          │          │          │   │ HOME     │ PGDN     │ PGUP     │ END      │ BSPC     │
             &kp TAB    &trans     &trans     &trans     &trans         &kp HOME   &kp PG_DN  &kp PG_UP  &kp END    &kp BSPC
         // │ ESC      │          │          │          │          │   │ LEFT     │ DOWN     │ UP       │ RIGHT    │ ENTER    │
@@ -104,34 +98,27 @@
 
         numsym_layer {
             bindings = <
-        // Numbers curve across both halves, like your original layer.
-        // Symbols occupy the middle/home-adjacent columns.
-        //
-        // ╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
+        // Numbers curve across both halves.
         // │ TAB      │ 2        │ 3        │ 4        │ 5        │   │ 6        │ 7        │ 8        │ 9        │ BSPC     │
             &kp TAB    &kp N2     &kp N3     &kp N4     &kp N5         &kp N6     &kp N7     &kp N8     &kp N9     &kp BSPC
         // │ ESC      │ 1        │ {        │ }        │ - _      │   │ \ |      │ (        │ )        │ 0        │ ENTER    │
             &kp ESC    &kp N1     &kp LBRC   &kp RBRC   &kp MINUS      &kp BSLH   &kp LPAR   &kp RPAR   &kp N0     &kp ENTER
-        // │ ALT-TAB  │ [        │ <        │ >        │ ' "      │   │ ` ~      │ + =      │ ,        │ .        │ / ?      │
-            &kp LA(TAB) &kp LBKT  &kp LT     &kp GT     &kp APOS       &kp GRAVE  &kp EQUAL  &kp COMMA  &kp DOT    &kp FSLH
+        // │ ALT-TAB  │ [        │ <        │ >        │ ' "      │   │ ` ~      │ = +      │ ,        │ .        │ / ?      │
+            &kp LA(TAB) &kp LBKT  &kp LS(COMMA) &kp LS(DOT) &kp APOS   &kp GRAVE  &kp EQUAL  &kp COMMA  &kp DOT    &kp FSLH
                                             &trans     &trans          &trans     &trans
             >;
         };
 
         wm_layer {
             bindings = <
-        // WM layer emits Hyper chords for skhd/yabai.
+        // WM layer emits F13-F24 for skhd/yabai.
         //
-        // ╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
         // │ Space 1  │ Space 2  │ Space 3  │ Reload   │ Float    │   │          │          │          │ Space 4  │ Space 5  │
-            &kp LC(LA(LS(LGUI(N1)))) &kp LC(LA(LS(LGUI(N2)))) &kp LC(LA(LS(LGUI(N3)))) &kp LC(LA(LS(LGUI(R)))) &kp LC(LA(LS(LGUI(F))))
-            &trans                  &trans                  &trans                  &kp LC(LA(LS(LGUI(N9)))) &kp LC(LA(LS(LGUI(N0))))
+            &kp F13    &kp F14    &kp F15    &kp F18    &kp F19        &trans     &trans     &trans     &kp F16    &kp F17
         // │          │ Focus L  │          │ Focus R  │ Fullscrn │   │ Focus L  │ Focus D  │ Focus U  │ Focus R  │ Terminal │
-            &trans     &kp LC(LA(LS(LGUI(S)))) &trans &kp LC(LA(LS(LGUI(G)))) &kp LC(LA(LS(LGUI(F))))
-            &kp LC(LA(LS(LGUI(H)))) &kp LC(LA(LS(LGUI(J)))) &kp LC(LA(LS(LGUI(K)))) &kp LC(LA(LS(LGUI(L)))) &kp LC(LA(LS(LGUI(RET))))
+            &trans     &kp F20    &trans     &kp F21    &kp F22        &kp F20    &kp F23    &kp F24    &kp F21    &kp LS(F18)
         // │ Close    │ Swap L   │          │ Swap R   │ Balance  │   │ Swap L   │ Swap D   │ Swap U   │ Swap R   │ Close    │
-            &kp LC(LA(LS(LGUI(Q)))) &kp LC(LA(LS(LGUI(S)))) &trans &kp LC(LA(LS(LGUI(G)))) &kp LC(LA(LS(LGUI(B))))
-            &kp LC(LA(LS(LGUI(H)))) &kp LC(LA(LS(LGUI(J)))) &kp LC(LA(LS(LGUI(K)))) &kp LC(LA(LS(LGUI(L)))) &kp LC(LA(LS(LGUI(Q))))
+            &kp LS(F19) &kp LS(F20) &trans   &kp LS(F21) &kp LS(F22)   &kp LS(F20) &kp LS(F23) &kp LS(F24) &kp LS(F21) &kp LS(F19)
                                             &trans     &trans          &trans     &trans
             >;
         };
