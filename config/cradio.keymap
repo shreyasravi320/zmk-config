@@ -8,17 +8,14 @@
 #define WM     3
 
 / {
-
     behaviors {
         hm: homerow_mods {
             compatible = "zmk,behavior-hold-tap";
             label = "HOMEROW_MODS";
             #binding-cells = <2>;
-
             tapping-term-ms = <180>;
             quick-tap-ms = <0>;
             flavor = "tap-preferred";
-
             bindings = <&kp>, <&kp>;
         };
     };
@@ -55,7 +52,6 @@
                                                                     &kp H &hm LSHIFT J &hm LCTRL K &hm LALT L &hm LGUI SEMI
             &kp Z    &kp X    &kp C    &kp V    &kp B        &kp N    &kp M    &kp COMMA &kp DOT &kp FSLH
 
-            // tap Esc, hold WM layer
                                       &lt WM ESC
                                       &lt NUMSYM ENTER
                                       &lt NAV SPACE
@@ -66,7 +62,7 @@
         nav_layer {
             bindings = <
             &kp TAB  &trans   &trans   &trans   &trans       &kp HOME &kp PG_DN &kp PG_UP &kp END &kp BSPC
-            &kp ESC  &trans   &trans   &trans   &trans       &kp LEFT &kp DOWN &kp UP   &kp RIGHT &kp ENTER
+            &kp ESC  &trans   &trans   &trans   &trans       &kp LEFT &kp DOWN &kp UP &kp RIGHT &kp ENTER
             &trans   &trans   &trans   &trans   &trans       &kp LA(LEFT) &kp LA(RIGHT) &kp LG(LEFT) &kp LG(RIGHT) &kp DEL
                                       &trans   &trans         &trans   &trans
             >;
@@ -79,17 +75,23 @@
             &kp GRAVE &kp LS(GRAVE) &kp LBRC &kp RBRC &kp LS(MINUS)
                                                                   &kp LS(EQUAL) &kp BSLH &kp LS(BSLH) &kp APOS &kp LS(APOS)
 
-            // hold NUMSYM with left thumb, use right outer thumb as Shift
-                                      &trans   &trans         &kp LSHIFT    &trans
+                                      &trans   &trans         &kp LSHIFT   &trans
             >;
         };
 
         wm_layer {
             bindings = <
-            // Plain keys only. Hammerspoon will interpret these while this layer is held.
-            &kp Q    &kp W    &kp E    &kp R    &kp T        &kp Y    &kp U    &kp I    &kp O    &kp P
-            &kp A    &kp S    &kp D    &kp F    &kp G        &kp H    &kp J    &kp K    &kp L    &kp SEMI
-            &kp Z    &kp X    &kp C    &kp V    &kp B        &kp N    &kp M    &kp COMMA &kp DOT &kp FSLH
+            // Spaces / system
+            &kp F13  &kp F14  &kp F15  &kp F16  &kp F17      &kp F18  &kp F19  &kp F20  &kp F21  &kp F22
+
+            // Focus / swap / close
+            &trans   &kp LS(F13) &kp LS(F14) &kp LS(F15) &kp LS(F16)
+                                                                  &kp LS(F17) &kp LS(F18) &kp LS(F19) &kp LS(F20) &kp LS(F21)
+
+            // Resize / transforms
+            &trans   &kp LC(F13) &kp LC(F14) &kp LC(F15) &kp LC(F16)
+                                                                  &kp LC(F17) &kp LC(F18) &kp LC(F19) &kp LC(F20) &kp LC(F21)
+
                                       &trans   &trans         &trans   &trans
             >;
         };
