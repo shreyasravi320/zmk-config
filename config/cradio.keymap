@@ -5,11 +5,6 @@
 #define BASE   0
 #define NAV    1
 #define NUMSYM 2
-#define WM     3
-
-// WM layer emits Ctrl+Alt+Cmd chords directly.
-// skhd should bind these as: ctrl + alt + cmd - <key>
-#define HY(k) LC(LA(LG(k)))
 
 / {
 
@@ -22,6 +17,18 @@
             tapping-term-ms = <180>;
             quick-tap-ms = <0>;
             flavor = "tap-preferred";
+
+            bindings = <&kp>, <&kp>;
+        };
+
+        hyper_thumb: hyper_thumb {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HYPER_THUMB";
+            #binding-cells = <2>;
+
+            tapping-term-ms = <180>;
+            quick-tap-ms = <120>;
+            flavor = "balanced";
 
             bindings = <&kp>, <&kp>;
         };
@@ -65,8 +72,11 @@
         // │ Z      │ X      │ C      │ V      │ B      │   │ N      │ M      │ ,      │ .      │ /      │
             &kp Z    &kp X    &kp C    &kp V    &kp B        &kp N    &kp M    &kp COMMA &kp DOT &kp FSLH
 
-        //                            │ ESC/WM │ ENT/NAV│   │ SPC/SYM│ BSPC   │
-                                      &lt WM ESC &lt NAV ENTER &lt NUMSYM SPACE &kp BSPC
+        //                            │ ESC/HYP│ ENT/SYM│   │ SPC/NAV│ BSPC   │
+                                      &hyper_thumb LC(LA(LG(LSHIFT))) ESC
+                                      &lt NUMSYM ENTER
+                                      &lt NAV SPACE
+                                      &kp BSPC
             >;
         };
 
@@ -99,26 +109,6 @@
         // │ `      │ ~      │ {      │ }      │ _      │   │ +      │ \      │ |      │ '      │ "      │
             &kp GRAVE &kp LS(GRAVE) &kp LBRC &kp RBRC &kp LS(MINUS)
                                                              &kp LS(EQUAL) &kp BSLH &kp LS(BSLH) &kp APOS &kp LS(APOS)
-
-                                      &trans   &trans         &trans   &trans
-            >;
-        };
-
-        wm_layer {
-            bindings = <
-        // WM layer emits Ctrl+Alt+Cmd chords for skhd.
-        //
-        // ╭────────┬────────┬────────┬────────┬────────╮   ╭────────┬────────┬────────┬────────┬────────╮
-        // │ Space1 │ Space2 │ Space3 │ Space4 │ Space5 │   │ Reload │ Restart│ Float  │ Full   │ Term   │
-            &kp HY(N1) &kp HY(N2) &kp HY(N3) &kp HY(N4) &kp HY(N5)    &kp HY(Y) &kp HY(U) &kp HY(I) &kp HY(O) &kp HY(P)
-
-        // │        │ Focus← │ Focus↓ │ Focus↑ │ Focus→ │   │ Swap←  │ Swap↓  │ Swap↑  │ Swap→  │ Close  │
-            &trans   &kp HY(S) &kp HY(D) &kp HY(F) &kp HY(G)
-                                                             &kp HY(H) &kp HY(J) &kp HY(K) &kp HY(L) &kp HY(SEMI)
-
-        // │        │ Resize←│ Resize↓│ Resize↑│ Resize→│   │ Balance│ Mirror │ Rotate │ Split  │ Mouse  │
-            &trans   &kp HY(X) &kp HY(C) &kp HY(V) &kp HY(B)
-                                                             &kp HY(N) &kp HY(M) &kp HY(COMMA) &kp HY(DOT) &kp HY(FSLH)
 
                                       &trans   &trans         &trans   &trans
             >;
