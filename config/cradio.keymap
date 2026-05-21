@@ -7,6 +7,10 @@
 #define NUMSYM 2
 #define WM     3
 
+// WM layer emits Ctrl+Alt+Cmd chords directly.
+// skhd should bind these as: ctrl + alt + cmd - <key>
+#define HY(k) LC(LA(LG(k)))
+
 / {
 
     behaviors {
@@ -35,13 +39,13 @@
         combo_undo {
             timeout-ms = <30>;
             key-positions = <11 12>; // S D
-            bindings = <&kp F13>;
+            bindings = <&kp LG(Z)>; // macOS Undo
         };
 
         combo_redo {
             timeout-ms = <30>;
             key-positions = <17 18>; // K L
-            bindings = <&kp F14>;
+            bindings = <&kp LG(LS(Z))>; // macOS Redo
         };
     };
 
@@ -61,8 +65,8 @@
         // │ Z      │ X      │ C      │ V      │ B      │   │ N      │ M      │ ,      │ .      │ /      │
             &kp Z    &kp X    &kp C    &kp V    &kp B        &kp N    &kp M    &kp COMMA &kp DOT &kp FSLH
 
-        //                            │ ESC/WM │ SPC/NAV│   │ ENT/SYM│ BSPC   │
-                                      &lt WM ESC &lt NAV SPACE    &lt NUMSYM ENTER &kp BSPC
+        //                            │ ESC/WM │ ENT/NAV│   │ SPC/SYM│ BSPC   │
+                                      &lt WM ESC &lt NAV ENTER &lt NUMSYM SPACE &kp BSPC
             >;
         };
 
@@ -77,7 +81,7 @@
 
         // │        │        │        │        │        │   │ WORD←  │ WORD→  │ LINE←  │ LINE→  │ DEL    │
             &trans   &trans   &trans   &trans   &trans
-                                                                    &kp LA(LEFT) &kp LA(RIGHT) &kp LG(LEFT) &kp LG(RIGHT) &kp DEL
+                                                             &kp LA(LEFT) &kp LA(RIGHT) &kp LG(LEFT) &kp LG(RIGHT) &kp DEL
 
                                       &trans   &trans         &trans   &trans
             >;
@@ -94,7 +98,7 @@
 
         // │ `      │ ~      │ {      │ }      │ _      │   │ +      │ \      │ |      │ '      │ "      │
             &kp GRAVE &kp LS(GRAVE) &kp LBRC &kp RBRC &kp LS(MINUS)
-                                                                    &kp LS(EQUAL) &kp BSLH &kp LS(BSLH) &kp APOS &kp LS(APOS)
+                                                             &kp LS(EQUAL) &kp BSLH &kp LS(BSLH) &kp APOS &kp LS(APOS)
 
                                       &trans   &trans         &trans   &trans
             >;
@@ -102,17 +106,19 @@
 
         wm_layer {
             bindings = <
+        // WM layer emits Ctrl+Alt+Cmd chords for skhd.
+        //
         // ╭────────┬────────┬────────┬────────┬────────╮   ╭────────┬────────┬────────┬────────┬────────╮
         // │ Space1 │ Space2 │ Space3 │ Space4 │ Space5 │   │ Reload │ Restart│ Float  │ Full   │ Term   │
-            &kp F15  &kp F16  &kp F17  &kp F18  &kp F19      &kp F20  &kp F21  &kp F22  &kp F23  &kp F24
+            &kp HY(N1) &kp HY(N2) &kp HY(N3) &kp HY(N4) &kp HY(N5)    &kp HY(Y) &kp HY(U) &kp HY(I) &kp HY(O) &kp HY(P)
 
         // │        │ Focus← │ Focus↓ │ Focus↑ │ Focus→ │   │ Swap←  │ Swap↓  │ Swap↑  │ Swap→  │ Close  │
-            &trans   &kp LS(F15) &kp LS(F16) &kp LS(F17) &kp LS(F18)
-                                                                    &kp LS(F19) &kp LS(F20) &kp LS(F21) &kp LS(F22) &kp LS(F23)
+            &trans   &kp HY(S) &kp HY(D) &kp HY(F) &kp HY(G)
+                                                             &kp HY(H) &kp HY(J) &kp HY(K) &kp HY(L) &kp HY(SEMI)
 
-        // │        │ Resize←│ Resize↓│ Resize↑│ Resize→│   │ Balance│ Mirror │ Rotate │ Stack  │ Mouse  │
-            &trans   &kp LC(F15) &kp LC(F16) &kp LC(F17) &kp LC(F18)
-                                                                    &kp LC(F19) &kp LC(F20) &kp LC(F21) &kp LC(F22) &kp LC(F23)
+        // │        │ Resize←│ Resize↓│ Resize↑│ Resize→│   │ Balance│ Mirror │ Rotate │ Split  │ Mouse  │
+            &trans   &kp HY(X) &kp HY(C) &kp HY(V) &kp HY(B)
+                                                             &kp HY(N) &kp HY(M) &kp HY(COMMA) &kp HY(DOT) &kp HY(FSLH)
 
                                       &trans   &trans         &trans   &trans
             >;
